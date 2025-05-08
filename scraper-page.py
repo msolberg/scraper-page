@@ -11,6 +11,9 @@ from prometheus_client import start_http_server, Gauge
 height = Gauge('height', 'River height')
 height.set(1.2)
 
+streamflow = Gauge('streamflow', 'Stream flow')
+streamflow.set(395)
+
 siteCode = "02333500"
 
 def get_river_height(siteCode="02333500"):
@@ -27,9 +30,13 @@ def get_river_height(siteCode="02333500"):
             if v['variable']['variableCode'][0]['value'] == "00065":
                 variable = v
                 value = v['values'][0]['value'][0]['value']
-        
-        height.set(float(value))
-        print("River height %s"% value)
+                height.set(float(value))
+                print("River height %s"% (value))
+            if v['variable']['variableCode'][0]['value'] == "00060":
+                variable = v
+                value = v['values'][0]['value'][0]['value']
+                streamflow.set(float(value))
+                print("Stream flow %s"% (value))
     
     except urllib.error.URLError as e:
         print("Error accessing waterservices.usgs.gov: %s"% e.reason)
