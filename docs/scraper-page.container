@@ -1,0 +1,14 @@
+[Unit]
+Description=Scraper Page
+
+[Container]
+Image=quay.io/msolberg/scraper-page:latest
+AutoUpdate=quay.io/msolberg/scraper-page:latest
+PublishPort=8000:8000
+
+[Service]
+# Restart service if it fails
+Restart=always
+
+[Install]
+WantedBy=multi-user.target default.target
