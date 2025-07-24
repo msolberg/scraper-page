@@ -1,6 +1,7 @@
 #!/bin/env python3.8
 
 import os
+import sys
 import urllib.request
 import json
 import time
@@ -39,7 +40,7 @@ def get_river_height(siteCode="02333500"):
                 print("Stream flow %s"% (value))
     
     except urllib.error.URLError as e:
-        print("Error accessing waterservices.usgs.gov: %s"% e.reason)
+        sys.stderr.write("Error accessing waterservices.usgs.gov: %s"% e.reason)
     
     return value
 
