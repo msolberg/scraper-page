@@ -49,4 +49,4 @@ if __name__ == '__main__':
     
     while True:
         get_river_height(siteCode="02333500")
-        time.sleep(60)
+        time.sleep(600)
